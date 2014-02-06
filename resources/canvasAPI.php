@@ -40,6 +40,20 @@
 			return $response;
 		}
 
+		function curlPostJSON($url, $data, $header){
+			$ch = curl_init($GLOBALS['canvasURL'].$url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);                                                                  
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				$header,                                                                          
+			    'Content-Type: application/json',                                                                                
+			    'Content-Length: ' . strlen($data))                                                                       
+			);                                                                                                                   
+			$response = curl_exec($ch);
+			return $response;
+		}
+
 		function curlGet($url, $header) {
 			$ch = curl_init($url);
 			curl_setopt ($ch, CURLOPT_URL, $GLOBALS['canvasURL'].$url);
@@ -132,24 +146,30 @@
 	// ASSIGNMENT GROUPS
 
 	// ASSIGNMENTS
-		function listAssignments($courseID, $header){
-			$response = curlGet("courses/".$courseID."/assignments?per_page=50", $header);
-			return $response;
-		}
-		function getAssignment($courseID, $assignmentID, $header){
-			$response = curlGet("courses/".$courseID."/assignments/".$assignmentID."?per_page=50", $header);
-			return $response;
-		}
 		function copyCourseAssignments($courseCopyFromID, $courseCopyToID, $header){
 			$copyCourseURL = "courses/".$courseCopyToID."/course_copy";
 			$copyCourseParam = "source_course=".$courseCopyFromID."&only[]=assignments";
 			curlPost($copyCourseURL, $copyCourseParam, $header);
 		}
+		function createGenericAssignment($courseID, $assignmentParams, $header){
+			$createAssignmentURL = "courses/".$courseID."/assignments";
+			$response = curlPost($createAssignmentURL, $assignmentParams, $header);
+			$responseData = json_decode($response, true);
+			$assignmentID = $responseData['id'];
+			return $assignmentID;
+		}
+		function getAssignment($courseID, $assignmentID, $header){
+			$response = curlGet("courses/".$courseID."/assignments/".$assignmentID."?per_page=50", $header);
+			return $response;
+		}
+		function listAssignments($courseID, $header){
+			$response = curlGet("courses/".$courseID."/assignments?per_page=50", $header);
+			return $response;
+		}
 		function listAssignmentOverrides($courseID, $assignmentID, $header){
 			$response = curlGet("courses/".$courseID."/assignments/".$assignmentID."/overrides", $header);
 			return $response;
 		}
-
 	// CALENDAR EVENTS
 
 	// COLLABORATIONS
@@ -161,6 +181,21 @@
 	// COMMUNICATION CHANNELS
 
 	// CONTENT MIGRATIONS
+		// Not working yet
+		function selectiveContentMigration($destinationCourseID, $sourceCourseID, $migrationJSON, $header){
+			// Create the content migration
+			$apiUrl = "courses/".$destinationCourseID."/content_migrations";
+			$firstParams = "selective_import=true&migration_type=course_copy_importer&settings[source_course_id=".$sourceCourseID;
+			$response = curlPost($apiUrl, $firstParams, $header);
+			$responseData = json_decode($response, true);
+			$migrationID = $responseData['id'];
+			var_dump($migrationID);
+			// Update the content migration
+			$migrationData = '{"id":"195355",'.$migrationJSON;
+			$apiUrl = "https://usu.instructure.com//api/v1/courses/".$destinationCourseID."/content_migrations/".$migrationID;
+			$response = curlPostJSON($apiUrl, $migrationData, $header);
+			return $response;
+		}
 
 	// CONVERSATIONS
 
@@ -247,6 +282,13 @@
 			$response = curlGet($apiUrl, $header);
 			return $response;
 		}
+		function createGenericDiscussion($courseID, $discussionParams, $header){
+			$createDiscussionURL = "courses/".$courseID."/discussion_topics";
+			$response = curlPost($createDiscussionURL, $discussionParams, $header);
+			$responseData = json_decode($response, true);
+			$discussionID = $responseData['id'];
+			return $discussionID;
+		}
 
 	// ENROLLMENTS
 		function enrollUser($userID, $courseID, $enrollmentType, $header){
@@ -305,6 +347,11 @@
 			return $response;
 		}
 
+		function deleteFile($fileID, $header){
+			$response = curlDelete("files/".$fileID, $header);
+			return $response;
+		}
+
 		function listFolders($folderID, $header){
 			$response = curlGet("folders/".$folderID."/folders?per_page=50", $header);
 			return $response;
@@ -327,8 +374,11 @@
 			return $response;
 		}
 
-		function deleteFile($fileID, $header){
-			$response = curlDelete("files/".$fileID, $header);
+
+		function uploadFrontPageBanner($courseID, $header){
+			$apiUrl = "courses/".$courseID."/files";
+			$apiParams = "name=homePageBanner.jpg&content_type=image/jpeg&parent_folder_path=/global/css/images&url=https://elearn.usu.edu/canvasCustomTools/wizard/images/".$courseID."_cropped.jpg&on_duplicate=overwrite";
+			$response = curlPost($apiUrl, $apiParams, $header);
 			return $response;
 		}
 
@@ -501,6 +551,14 @@
 			$apiUrl = "courses/".$courseID."/quizzes";
 			$response = curlPost($apiUrl, $quizParams, $header);
 			return $response;
+		}
+
+		function createGenericQuiz($courseID, $quizParams, $header){
+			$createQuizURL = "courses/".$courseID."/quizzes";
+			$response = curlPost($createQuizURL, $quizParams, $header);
+			$responseData = json_decode($response, true);
+			$quizID = $responseData['id'];
+			return $quizID;
 		}
 
 		function deleteQuiz($courseID, $quizID, $header){
