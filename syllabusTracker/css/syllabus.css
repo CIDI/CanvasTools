@@ -1,0 +1,141 @@
+
+
+.btn.active { 
+	background: #0081c2; 
+	color: #fff;
+	text-shadow: none; 
+}
+.btn.activeToggle {
+	background: #0081c2;
+	color: #fff;
+	text-shadow: none;
+}
+.badge { 
+	margin: 0 2px; 
+}
+#count { 
+	list-style-type: none;
+	margin: 5px; 
+	min-height: 25px; 
+	text-align: center;
+}
+#count a {
+	width: 200px;
+}
+#departmentCourses { 
+	clear: both; 
+	margin-top: 5px; 
+	min-height: 100px; 
+}
+#departmentCourses li {
+	padding: 0 10px; 
+}
+h1 { 
+	margin: 40px 0 45px 10px; 
+	text-shadow: 0px 2px 2px #000; 
+}
+h2 {
+	background: #003366; 
+	border-radius: 5px;
+	box-shadow: 0px 2px 2px #9C9C9C; 
+	color: #fff; 
+	padding: 10px;
+}
+.li i {
+	margin-right: 5px;
+}
+#departmentCourses .icon-ok-sign, #generateProcess .completed, .include .icon-ok{ 
+	color: #468847; 
+}
+.exclude .icon-ok, .include .icon-remove,  .undecided i {
+	color: #C2C2C2;
+}
+#generateProcess .active {
+	font-weight: bold;
+
+}
+#generateProcess .pending {
+	color: #8D8D8D;
+}
+.heading { 
+	background: #003366; 
+	box-shadow: 0px 2px 2px #9C9C9C; 
+	color: #fff; 
+	margin-bottom: 20px; 
+}
+.hover {
+	background: #FFFFAE; 
+	border-radius: 10px;
+}
+.icon-user.noInstructor {
+	color: #c2c2c2;
+}
+.instructorIcon {
+	color: #4072A3;
+}
+.instructorIcon:hover {
+	text-decoration: none;
+}
+.key {
+	font-size: 12px;
+	margin-top: 14px;
+}
+.key i {
+	font-size: 14px;
+	margin-right: 5px;
+}
+#departmentCourses .icon-question-sign, .exclude .icon-remove{ 
+	color: #b94a48; 
+}
+.notUsingCanvas, i.icon-circle-blank {
+	color: #9E9E9E;
+}
+#departmentCourses ol { 
+	-moz-column-count: 4; 
+	-webkit-column-count: 4; 
+	column-count: 4; 
+	list-style-type: none; 
+}
+select, .btn { 
+	margin-bottom: 5px; 
+}
+select {
+	width:auto;
+}
+.topLink {
+	color: #fff;
+	float: right;
+	font-size: 16px;
+	margin-right: 10px;
+}
+@media screen and (max-width: 1000px) { 
+	ol { 
+		column-count: 3; 
+		-moz-column-count: 3; 
+		-webkit-column-count: 3; 
+	}
+}
+@media screen and (max-width: 800px) { 
+	ol { 
+		column-count: 2; 
+		-moz-column-count: 2; 
+		-webkit-column-count: 2; 
+	}
+}
+@media (max-width: 767px){
+	body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.container-fluid {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+@media screen and (max-width: 500px) { 
+	ol { 
+		column-count: 1; 
+		-moz-column-count: 1; 
+		-webkit-column-count: 1; 
+	}
+}
