@@ -25,4 +25,42 @@
 	$canvasURL = 'https://usu.instructure.com';
 	// This is the header containing the authorization token from Canvas
 	$token = "";
+
+	// Adjust the following code to reflect your institutions sis_term_id's
+	function termDropdown(){
+		// Determine current term
+		$currYear = date("Y");
+		$subtractYear = mktime(0,0,0,date("m"),date("d"),date("Y")-1);
+		$prevYear = date("Y", $subtractYear);
+		$term = "";
+		$month = date("m");
+		$semester = "";
+
+		// You will need to change the following to match your institutions sis_term_id's
+		// USU uses YYYY## for each term where ## is a two digit term code
+		$SpringCode = '20';
+		$SummerCode = '30';
+		$FallCode = '40';
+
+		// Spring Semester
+		if (($month >= "01" && $month <= "03") || $month == "12"){
+			echo '<option value="'.$currYear.$SpringCode.'">Spring '.$currYear.'</option>';
+			echo '<option value="'.$prevYear.$FallCode.'">Fall '.$prevYear.'</option>';
+			echo '<option value="'.$prevYear.$SummerCode.'">Summer '.$prevYear.'</option>';
+			echo '<option value="'.$prevYear.$SpringCode.'">Spring '.$prevYear.'</option>';
+		// Summer Semester
+		} else if ($month >= "04" && $month <= "06"){
+			echo '<option value="'.$currYear.$SummerCode.'">Summer '.$currYear.'</option>';
+			echo '<option value="'.$currYear.$SpringCode.'">Spring '.$currYear.'</option>';
+			echo '<option value="'.$prevYear.$FallCode.'">Fall '.$prevYear.'</option>';
+			echo '<option value="'.$prevYear.$SummerCode.'">Summer '.$prevYear.'</option>';
+		// Fall Semester
+		} else if ($month >= "07" && $month <= "11"){
+			echo '<option value="'.$currYear.$FallCode.'">Fall '.$currYear.'</option>';
+			echo '<option value="'.$currYear.$SummerCode.'">Summer '.$currYear.'</option>';
+			echo '<option value="'.$currYear.$SpringCode.'">Spring '.$currYear.'</option>';
+			echo '<option value="'.$prevYear.$FallCode.'">Fall '.$prevYear.'</option>';
+		}
+	}
+
 ?>

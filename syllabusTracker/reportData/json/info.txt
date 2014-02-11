@@ -1,0 +1,1 @@
+This folder will hold all of the data for generating reports, this is merely to keep the folder from being removed by gitHub

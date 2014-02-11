@@ -1,0 +1,21 @@
+Welcome to the Syllabus Tracker, created by the Center for Innovative Design & Instruction at Utah State University
+
+The Syllabus Tracker needs to be loaded on a webserver that can handle PHP
+
+In order to deploy this for your institution, there are a few things you will want to change.
+
+variableSetup.php file
+1. Add your institutions url on line 25
+2. Add an admin user token for the API calls on line 27
+3. Update the code in the term drowdown function to match your institutions sis_term_id's in Canvas
+
+When all that is done, go to the index.php file in a browser
+1. You will be redirected to create a college list
+	- Select the colleges you want included in the reports from the list
+	- Click "Save List"
+	- Click "Go to Syllabus Tracker"
+2. You will need to generate the report files for desired terms
+	- Click "Update Data"
+	- Choose a term from the dropdown
+	- Click "Begin Process"
+	- Repeat for desired terms

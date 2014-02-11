@@ -40,9 +40,7 @@
 						$currentList = file_get_contents('json/'.$_GET['term'].'.json');
 						$data = json_decode($currentList, true);
 						$courseCount = count($data);
-						// for ($i=0; $i<count($data); $i++){
 							$college = $data[$indexNum]['collegeName'];
-							// var_dump($data[$indexNum]);
 							$jsonData .= "{";
 							$jsonData .= '"collegeName": "'.$college.'",';
 							$jsonData .= '"departments": [';
@@ -58,8 +56,6 @@
 										$jsonData .= "{";
 										$jsonData .= '"courseID": "'.$courseID.'",'; 
 										$jsonData .= '"courseName": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['courseName'].'",'; 
-										$jsonData .= '"campusCode": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['campusCode'].'",'; 
-										$jsonData .= '"deliveryMethod": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['deliveryMethod'].'",'; 
 										$jsonData .= '"usingCanvas": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['usingCanvas'].'"';
 										$jsonData .= "},";
 									} else {
@@ -72,11 +68,6 @@
 							}
 							$jsonData = rtrim($jsonData, ",");
 							$jsonData .= "]},";
-							// $studentEnrollments = hasStudents($courseID, $tokenHeader);
-						 //  	if($studentEnrollments == true){
-							// 	// $GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "campusCode": "CC-'.$campusCode.'", "deliveryMethod": "DM-'.$deliveryMethod.'",  "usingCanvas": "'.$usingCanvas.'"},';
-							// }
-						// }
 						echo '</ol>';
 						$jsonData = rtrim($jsonData, ",").']';
 						// echo $jsonData;

@@ -24,16 +24,7 @@
 
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL ^ E_NOTICE);
-
-	// include '../resources/canvasAPI.php';
-	// $accountID = $_GET['accountID']; // COMD SubAccount 440
-
-	// Get Account Info
-	// $accountInfo = getAccountInfo($accountID, $tokenHeader, $canvasURL);
-	// // var_dump($accountInfo);
-	// $accountInfoDetails = json_decode($accountInfo, true);
-	// $accountName = $accountInfoDetails['name'];
-
+	include 'variableSetup.php';
 	?>
 <!DOCTYPE html>
 <head>
@@ -88,32 +79,7 @@
 
 				<select name="term" id="term">
 					<?php
-						// Determine current term
-							$currYear = date("Y");
-							$subtractYear = mktime(0,0,0,date("m"),date("d"),date("Y")-1);
-							$prevYear = date("Y", $subtractYear);
-							$term = "";
-							$month = date("m");
-							$semester = "";
-							// Spring Semester
-							if (($month >= "01" && $month <= "03") || $month == "12"){
-								echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-								echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-								echo '<option value="'.$prevYear.'30">Summer '.$prevYear.'</option>';
-								echo '<option value="'.$prevYear.'20">Spring '.$prevYear.'</option>';
-							// Summer Semester
-							} else if ($month >= "04" && $month <= "06"){
-								echo '<option value="'.$currYear.'30">Summer '.$currYear.'</option>';
-								echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-								echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-								echo '<option value="'.$prevYear.'30">Summer '.$prevYear.'</option>';
-							// Fall Semester
-							} else if ($month >= "07" && $month <= "11"){
-								echo '<option value="'.$currYear.'40">Fall '.$currYear.'</option>';
-								echo '<option value="'.$currYear.'30">Summer '.$currYear.'</option>';
-								echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-								echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-							}
+						termDropdown();
 					?>
 				</select>
 				<a href="#myModal" role="button" class="btn btn-mini pull-right updateData" data-toggle="modal"><i class="icon-refresh"></i> Update Data</a>
@@ -126,41 +92,6 @@
 							Department <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu departmentList">
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default btn-small dropdown-toggle campusDropdown" data-toggle="dropdown">
-							Campus Code <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li class="campusSelect" id="CC-0" rel=".CC-0"><a href="#">0 - Logan Campus</a></li>
-							<li class="campusSelect" id="CC-A" rel=".CC-A"><a href="#">A - San Juan / Blanding</a></li>
-							<li class="campusSelect" id="CC-B" rel=".CC-B"><a href="#">B - Brigham City</a></li>
-							<li class="campusSelect" id="CC-C" rel=".CC-C"><a href="#">C - South West (Ephraim)</a></li>
-							<li class="campusSelect" id="CC-E" rel=".CC-E"><a href="#">E - Moab</a></li>
-							<li class="campusSelect" id="CC-F" rel=".CC-F"><a href="#">F - Monticello Prison</a></li>
-							<li class="campusSelect" id="CC-I" rel=".CC-I"><a href="#">I - Independent Study</a></li>
-							<li class="campusSelect" id="CC-K" rel=".CC-K"><a href="#">K - Kaysville</a></li>
-							<li class="campusSelect" id="CC-L" rel=".CC-L"><a href="#">L - Logan</a></li>
-							<li class="campusSelect" id="CC-N" rel=".CC-N"><a href="#">N - North Central (Orem)</a></li>
-							<li class="campusSelect" id="CC-P" rel=".CC-P"><a href="#">P - Price</a></li>
-							<li class="campusSelect" id="CC-S" rel=".CC-S"><a href="#">S - Salt Lake City</a></li>
-							<li class="campusSelect" id="CC-T" rel=".CC-T"><a href="#">T - Toole</a></li>
-							<li class="campusSelect" id="CC-U" rel=".CC-U"><a href="#">U - Uintah Basin (Vernal / Roosevelt)</a></li>
-							<li class="campusSelect" id="CC-X" rel=".CC-X"><a href="#">X - Special Programs</a></li>
-							<li class="campusSelect" id="CC-Y" rel=".CC-Y"><a href="#">Y - China Program</a></li>
-							<li class="campusSelect" id="CC-Z" rel=".CC-Z"><a href="#">Z - Out-of-State</a></li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default btn-small dropdown-toggle deliveryDropdown" data-toggle="dropdown">
-							Delivery Method <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li class="deliverySelect" id="DM-B" rel=".DM-B"><a href="#">B - Broadcast</a></li>
-							<li class="deliverySelect" id="DM-O" rel=".DM-O"><a href="#">O - Online</a></li>
-							<li class="deliverySelect" id="DM-S" rel=".DM-S"><a href="#">S - Supervised Study</a></li>
-							<li class="deliverySelect" id="DM-T" rel=".DM-T"><a href="#">T - Traditional</a></li>
 						</ul>
 					</div>
 					<div class="btn-group">
@@ -229,32 +160,7 @@
 			<select name="generateTerm" id="generateTerm">
 				<option>Select a Term</option>
 				<?php
-					// Determine current term
-						$currYear = date("Y");
-						$subtractYear = mktime(0,0,0,date("m"),date("d"),date("Y")-1);
-						$prevYear = date("Y", $subtractYear);
-						$term = "";
-						$month = date("m");
-						$semester = "";
-						// Spring Semester
-						if (($month >= "01" && $month <= "03") || $month == "12"){
-							echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-							echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-							echo '<option value="'.$prevYear.'30">Summer '.$prevYear.'</option>';
-							echo '<option value="'.$prevYear.'20">Spring '.$prevYear.'</option>';
-						// Summer Semester
-						} else if ($month >= "04" && $month <= "06"){
-							echo '<option value="'.$currYear.'30">Summer '.$currYear.'</option>';
-							echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-							echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-							echo '<option value="'.$prevYear.'30">Summer '.$prevYear.'</option>';
-						// Fall Semester
-						} else if ($month >= "07" && $month <= "11"){
-							echo '<option value="'.$currYear.'40">Fall '.$currYear.'</option>';
-							echo '<option value="'.$currYear.'30">Summer '.$currYear.'</option>';
-							echo '<option value="'.$currYear.'20">Spring '.$currYear.'</option>';
-							echo '<option value="'.$prevYear.'40">Fall '.$prevYear.'</option>';
-						}
+					termDropdown();
 				?>
 			</select>
 			<span id="fileDetails"></span>

@@ -214,9 +214,13 @@ $(function() {
 	});
 	var selectedTerm = $("#term").attr("value");
 	if(selectedTerm !== ""){
+		$('#termInfo').load('reportData/fileData.php?term=collegeList', function(){
+			if($("#termInfo:contains('not yet generated')").length>0){
+				document.location.href='createAccountList.php';
+			}
+		});
 		$('#termInfo').load('reportData/fileData.php?term='+selectedTerm, function(){
 			if($("#termInfo:contains('not yet generated')").length>0){
-
 				$('.updateData').attr("title", "Data not available for<br><strong>"+$("#term option:selected").text()+"</strong").tooltip({html:true}).trigger("mouseover").focus();
 			}
 		});

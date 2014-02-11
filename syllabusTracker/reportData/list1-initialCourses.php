@@ -88,23 +88,12 @@
 									  	$courseID = $workingList[$i]['id'];
 									  	$courseName = $workingList[$i]['name'];
 									  	$status = $workingList[$i]['workflow_state'];
-									  	$courseNameParts = explode("-", $courseName);
-									  	if(isset($courseNameParts[2])){
-										  	$sectionCode = $courseNameParts[2];
-										  	$campusCode = substr($sectionCode, 0, 1);
-										  	$deliveryMethod = substr($sectionCode, 1, 1);
-									  	} else {
-									  		$sectionCode = "undefined";
-									  		$campusCode = "undefined";
-									  		$deliveryMethod = "undefined";
-									  	}
 										if($status == "available"){
 											$usingCanvas = "true";
 										} else {
 											$usingCanvas = "false";
 										}
-										// $GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "campusCode": "CC-'.$campusCode.'", "deliveryMethod": "DM-'.$deliveryMethod.'",  "usingCanvas": "'.$usingCanvas.'", "instructors": ['.$instructorNames.']},';
-										$GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "campusCode": "CC-'.$campusCode.'", "deliveryMethod": "DM-'.$deliveryMethod.'",  "usingCanvas": "'.$usingCanvas.'"},';
+										$GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "usingCanvas": "'.$usingCanvas.'"},';
 									}
 								}
 									// This is the second part of page control. It will exit the loop when all courses have been returned 

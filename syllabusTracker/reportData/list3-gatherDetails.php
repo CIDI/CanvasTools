@@ -31,7 +31,6 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="collegeList">
-				<!-- <ol id="courseList"> -->
 					<?php 
 						$indexNum = $_GET['indexNum'];
 						$jsonData = "[";
@@ -40,91 +39,78 @@
 						$currentList = file_get_contents('json/'.$_GET['term'].'_enrollments_'.$_GET['indexNum'].'.json');
 						$data = json_decode($currentList, true);
 						$courseCount = count($data);
-						// for ($i=0; $i<count($data); $i++){
-							$college = $data[0]['collegeName'];
-							// var_dump($data[0]);
-							$jsonData .= "{";
-							$jsonData .= '"collegeName": "'.$college.'",';
-							$jsonData .= '"departments": [';
-							$departmentCount = count($data[0]['departments']);
-							for ($j=0; $j<$departmentCount; $j++){
-								$jsonData .= '{"deptName": "'.$data[0]['departments'][$j]['deptName'].'",';
-								$courseCount = count($data[0]['departments'][$j]['courses']);
-								$jsonData .= '"courses": [';
-								for ($k=0; $k<$courseCount; $k++){
-									$courseID = $data[0]['departments'][$j]['courses'][$k]['courseID'];
-									// $studentEnrollments = hasStudents($courseID, $tokenHeader);
-								  	// if($studentEnrollments == true){
-										$jsonData .= "{";
-										$jsonData .= '"courseID": "'.$courseID.'",'; 
-										$jsonData .= '"courseName": "'.$data[0]['departments'][$j]['courses'][$k]['courseName'].'",'; 
-										$jsonData .= '"campusCode": "'.$data[0]['departments'][$j]['courses'][$k]['campusCode'].'",'; 
-										$jsonData .= '"deliveryMethod": "'.$data[0]['departments'][$j]['courses'][$k]['deliveryMethod'].'",'; 
-										$jsonData .= '"usingCanvas": "'.$data[0]['departments'][$j]['courses'][$k]['usingCanvas'].'",';
-								  		
+						$college = $data[0]['collegeName'];
+						$jsonData .= "{";
+						$jsonData .= '"collegeName": "'.$college.'",';
+						$jsonData .= '"departments": [';
+						$departmentCount = count($data[0]['departments']);
+						for ($j=0; $j<$departmentCount; $j++){
+							$jsonData .= '{"deptName": "'.$data[0]['departments'][$j]['deptName'].'",';
+							$courseCount = count($data[0]['departments'][$j]['courses']);
+							$jsonData .= '"courses": [';
+							for ($k=0; $k<$courseCount; $k++){
+								$courseID = $data[0]['departments'][$j]['courses'][$k]['courseID'];
+								$jsonData .= "{";
+								$jsonData .= '"courseID": "'.$courseID.'",'; 
+								$jsonData .= '"courseName": "'.$data[0]['departments'][$j]['courses'][$k]['courseName'].'",'; 
+								$jsonData .= '"usingCanvas": "'.$data[0]['departments'][$j]['courses'][$k]['usingCanvas'].'",';
+							  		
 
-								  		// Check Syllabus
-								  		$syllabusDetails = getCourseSyllabus($courseID, $tokenHeader);
-										$syllabusDecoded = json_decode($syllabusDetails, true);
-										$syllabusBody = $syllabusDecoded['syllabus_body'];
-										if(strlen($syllabusBody) > 0) {
-											$jsonData .= '"hasSyllabus": "true",';
-											if (strpos($syllabusBody,'template-wrapper') !== false) {
-											    $jsonData .= '"syllabusTool": "true",';
-											} else {
-											    $jsonData .= '"syllabusTool": "false",';
-											}	
+							  		// Check Syllabus
+							  		$syllabusDetails = getCourseSyllabus($courseID, $tokenHeader);
+									$syllabusDecoded = json_decode($syllabusDetails, true);
+									$syllabusBody = $syllabusDecoded['syllabus_body'];
+									if(strlen($syllabusBody) > 0) {
+										$jsonData .= '"hasSyllabus": "true",';
+										if (strpos($syllabusBody,'template-wrapper') !== false) {
+										    $jsonData .= '"syllabusTool": "true",';
 										} else {
-											$jsonData .= '"hasSyllabus": "false", "syllabusTool": "false",';	
-										}
-								  		
+										    $jsonData .= '"syllabusTool": "false",';
+										}	
+									} else {
+										$jsonData .= '"hasSyllabus": "false", "syllabusTool": "false",';	
+									}
+							  		
 
-								  		// Get Teacher(s)
-									  	$courseInstructor = getTeacher($courseID, $tokenHeader);
-									  	// var_dump($courseInstructor);
-									  	$instructorCount = count($courseInstructor);
-								  		$jsonData .= '"instructors": [';
-										  	if($instructorCount>1){
-												echo '<li>'.$courseID.' - >1 ('.strlen($syllabusBody).')</li>';
-										  		
-											  	for($instructor=0; $instructor<$instructorCount; $instructor++){
-											  		$instructorName = str_replace('"', '&quot;', $courseInstructor[$instructor]['name']);
-											  		$jsonData .= '{"instructorName": "'.$instructorName.'"},';
-											  	}
-											} else if($instructorCount == 0){
-												echo '<li>'.$courseID.' - No Instructors ('.strlen($syllabusBody).')</li>';
-										  		// $jsonData .= '{"instructorName": "None"},';
-												// $instructorIcon = "icon-user noInstructor";
-												// $instructorList = "No Instructor <br>";
-										  	} else {
-										  		if(isset($courseInstructor[0]['name'])){
-										  			$instructorIcon = "icon-user";
-										  			$instructorName = str_replace('"', '&quot;', $courseInstructor[0]['name']);
-											  		$jsonData .= '{"instructorName": "'.$instructorName.'"},';
-										  		}
-												echo '<li>'.$courseID.' - 1 ('.$instructorName.') ('.strlen($syllabusBody).')</li>';
+							  		// Get Teacher(s)
+								  	$courseInstructor = getTeacher($courseID, $tokenHeader);
+								  	// var_dump($courseInstructor);
+								  	$instructorCount = count($courseInstructor);
+							  		$jsonData .= '"instructors": [';
+									  	if($instructorCount>1){
+											echo '<li>'.$courseID.' - >1 ('.strlen($syllabusBody).')</li>';
+									  		
+										  	for($instructor=0; $instructor<$instructorCount; $instructor++){
+										  		$instructorName = str_replace('"', '&quot;', $courseInstructor[$instructor]['name']);
+										  		$jsonData .= '{"instructorName": "'.$instructorName.'"},';
 										  	}
-											$jsonData = rtrim($jsonData, ",");
-										$jsonData .= "]";
+										} else if($instructorCount == 0){
+											echo '<li>'.$courseID.' - No Instructors ('.strlen($syllabusBody).')</li>';
+									  	} else {
+									  		if(isset($courseInstructor[0]['name'])){
+									  			$instructorIcon = "icon-user";
+									  			$instructorName = str_replace('"', '&quot;', $courseInstructor[0]['name']);
+										  		$jsonData .= '{"instructorName": "'.$instructorName.'"},';
+									  		}
+											echo '<li>'.$courseID.' - 1 ('.$instructorName.') ('.strlen($syllabusBody).')</li>';
+									  	}
+										$jsonData = rtrim($jsonData, ",");
+									$jsonData .= "]";
 
 
 
-										$jsonData .= "},";
-									// } else {
-									// 	echo '<li>'.$courseID.' - No Student Enrollments</li>';
-									// }
+									$jsonData .= "},";
+								// } else {
+								// 	echo '<li>'.$courseID.' - No Student Enrollments</li>';
+								// }
 
-								}
-								$jsonData = rtrim($jsonData, ",");
-								$jsonData .= "]},";
 							}
 							$jsonData = rtrim($jsonData, ",");
 							$jsonData .= "]},";
-							// $studentEnrollments = hasStudents($courseID, $tokenHeader);
-						 //  	if($studentEnrollments == true){
-							// 	// $GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "campusCode": "CC-'.$campusCode.'", "deliveryMethod": "DM-'.$deliveryMethod.'",  "usingCanvas": "'.$usingCanvas.'"},';
-							// }
-						// }
+						}
+						$jsonData = rtrim($jsonData, ",");
+						$jsonData .= "]},";
+						
 						echo '</ol>';
 						$jsonData = rtrim($jsonData, ",").']';
 						// echo $jsonData;
