@@ -1,0 +1,19 @@
+This is the first release of the Center for Innovative Design & Instruction's Custom Canvas Tools. 
+
+These tools are a work in progress and will continue to change as time goes on. There is an additional LTI aspect to
+these tools, the USU Template Wizard, that will be released in the not too distant future.
+
+To use these tools:
+1. Place the files on a secure server
+2. Open the "canvasGlobal.js" file
+	- Update the "toolsPath" variable to link to the folder containing these tools
+	- Update the "globalCSSPath" variable to match your global css file (this is so we can add your global css file to the WYSIWYG editors)
+	- Add any courses you want to have access to the tools to the "courseArray"
+	- Add any users you want to have access to the tools to the "userArray"
+3. Copy the contents of the "canvasGlobal.js" into your institutions global js file
+4. Copy the contents of the "canvasGlobal.css" into your institutions global css file
+
+Cross your fingers and edit a page.
+
+This code is was created by the Center of Innovative Design and Instruction at Utah State University. 
+It is released under the AGPLv3 license. For more information about this license, go to http://www.gnu.org/licenses/agpl.html
