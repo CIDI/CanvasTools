@@ -24,7 +24,7 @@
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL ^ E_NOTICE);
 
-	include '../resources/canvasAPI.php';
+	include 'reportData/syllabusAPI.php';
 	$courseID = $_GET['courseID']; // COMD SubAccount 440
 
 	// Get Course info
@@ -38,9 +38,9 @@
 	<meta http-equiv="Content-Language" content="en">
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<title><? echo $courseName ?> Syllabus</title>
-	<link rel="stylesheet" href="/canvasCustomTools/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/canvasCustomTools/resources/bootstrap/css/bootstrap-responsive.min.css">
-	<link rel="stylesheet" href="/canvasCustomTools/resources/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<style>
 		body {
@@ -91,7 +91,7 @@
 </head>
 <body>
 	<div class="heading">
-		<h1><?php echo '<a href="https://usu.instructure.com/courses/'.$courseID.'" target="_blank" title="Go To Course">'.$courseName.'</a>' ?> Syllabus</h1>
+		<h1><?php echo '<a href="'.$GLOBALS['canvasURL'].'/courses/'.$courseID.'" target="_blank" title="Go To Course">'.$courseName.'</a>' ?> Syllabus</h1>
 	</div>
 	<div class="syllabusWrap">
 		<div class="syllabus">

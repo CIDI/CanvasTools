@@ -36,14 +36,14 @@
 	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/syllabus.css">
+	<link rel="stylesheet" href="resources/css/syllabus.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="js/syllabus.js"></script>
+	<script src="resources/js/syllabus.js"></script>
 </head>
 <body>
 	<div class="heading">
@@ -56,7 +56,7 @@
 				<i class="icon-user"></i> Course Instructor or <i class="icon-group" style="margin-left:10px;"></i> Instructors<br> 
 				<i class="icon-magic"></i> Used USU Custom Syllabus Tool
 			</div>
-			<h1><i class="icon-compass"></i> USU Canvas Course Syllabus Tracker</h1>
+			<h1><i class="icon-compass"></i> Canvas Course Syllabus Tracker</h1>
 		</div>
 	</div>
 	<div class="container-fluid">
@@ -144,7 +144,7 @@
 				<span class="badge badge-inverse"><i class="icon-magic"></i> <span class="usedWizardTotal">0</span> / <span class="grandTotal">0</span></span>
 			</a>
 			<a href="http://cidi.usu.edu/" target="_blank" title="CIDI Website">
-				<img src="/canvas_branding/cidi/images/cidi-logo-small-silver.png" width="250">
+				<img src="https://elearn.usu.edu/canvas_branding/cidi/images/cidi-logo-small-silver.png" width="250">
 			</a>
 		</div>
 	</div>

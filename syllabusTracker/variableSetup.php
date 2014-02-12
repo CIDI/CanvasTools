@@ -23,8 +23,13 @@
 
 	// Root url for all api calls and links back to Canvas
 	$canvasURL = 'https://usu.instructure.com';
-	// This is the header containing the authorization token from Canvas
+	// This is the authorization token from Canvas
 	$token = "";
+	// To generate this token, choose/create an admin user that you would like to generate the token from
+	// 1.	Click the "profile" link in the top right menu bar, or navigate to /profile
+	// 2.	Under the "Approved Integrations" section, click the button to generate a new access token.
+	// 3.	Once the token is generated, you cannot view it again, and you'll have to generate a new token if you forget it. 
+	// Remember that access tokens are password equivalent, so keep it secret.
 
 	// Adjust the following code to reflect your institutions sis_term_id's
 	function termDropdown(){

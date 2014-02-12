@@ -12,11 +12,11 @@
 	<meta http-equiv="Content-Language" content="en">
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<title>Courses JSON</title>
-	<link rel="stylesheet" href="/canvasCustomTools/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/canvasCustomTools/resources/bootstrap/css/bootstrap-responsive.min.css">
-	<link rel="stylesheet" href="/canvasCustomTools/resources/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	<script type="text/javascript" src="/canvasCustomTools/resources/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="../resources/bootstrap/js/bootstrap.js"></script>
 	<style>
 		.dataTables_filter label {float:right;}
 		.noContent i{

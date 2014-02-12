@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/syllabus.css">
+	<link rel="stylesheet" href="resources/css/syllabus.css">
 	<script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript">
@@ -212,11 +212,9 @@
 			<a href="#" class="generateData btn pull-right">Save List</a>
 			<a href="index.php" class="btn btn-primary trackerLink hide pull-right">Go to Syllabus Tracker</a>
 			<a href="http://cidi.usu.edu/" target="_blank" title="CIDI Website">
-				<img src="/canvas_branding/cidi/images/cidi-logo-small-silver.png" width="250">
+				<img src="https://elearn.usu.edu/canvas_branding/cidi/images/cidi-logo-small-silver.png" width="250">
 			</a>
 		</div>
 	</div>
 </body>
 </html>
-
-<!-- $('#test').load('https://usu.instructure.com/accounts/15/sub_accounts #content', function(){}) -->

@@ -42,7 +42,7 @@
 								<a href="#" class="btn btn-mini addDept" title="Add Department"><i class="icon-ok"></i></a>
 								<a href="#" class="btn btn-mini removeDept" title="Remove Department"><i class="icon-remove"></i></a>
 							</div>
-							<a href="https://usu.instructure.com/accounts/'.$departmentAccountID.'" target="_blank" title="View account in Canvas"><span class="deptName">'.$departmentName.'</span></a> (ID: '.$departmentAccountID.')
+							<a href="'.$GLOBALS['canvasURL'].'/accounts/'.$departmentAccountID.'" target="_blank" title="View account in Canvas"><span class="deptName">'.$departmentName.'</span></a> (ID: '.$departmentAccountID.')
 							</li>';
 						}
 					}
@@ -59,7 +59,7 @@
 						<a href="#" class="btn btn-mini removeCollege" title="Remove College &amp; Departments"><i class="icon-remove"></i></a>
 					</div> ';
 					$subList = '<ol>'.$subList.'</ol>';
-					$title = '<a href="https://usu.instructure.com/accounts/'.$collegeAccountID.'/sub_accounts" target="_blank" title="View subaccounts list in Canvas"><span class="collegeName">'.$collegeName.'</span></a>';
+					$title = '<a href="'.$GLOBALS['canvasURL'].'/accounts/'.$collegeAccountID.'/sub_accounts" target="_blank" title="View subaccounts list in Canvas"><span class="collegeName">'.$collegeName.'</span></a>';
 				} else {
 					$initialState = "ignore";
 					$buttons = '';
