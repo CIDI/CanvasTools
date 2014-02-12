@@ -1,0 +1,10 @@
+Welcome to the USU Template Wizard. This program was designed by the Center for Innovative Design & Instruction 
+at Utah State University.
+
+This program was designed to help with the rapid development of courses and goes hand in hand with the Custom 
+Canvas Tools project. To set up this tool you will need to:
+
+1. Host this file on a secure server.
+2. Update the 3 variables in the "variableSetup.php" file.
+3. Update the urls in the "ltiCode.xml" file.
+4. Use the xml to create a new app at whatever level you are going to implement this at (course, account, institution).
