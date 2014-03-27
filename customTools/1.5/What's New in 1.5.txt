@@ -1,0 +1,10 @@
+What's New in 1.5
+
+FRONT PAGE CURRENT MODULE
+You can now specify start and end dates in the Module List section of the front page. There is a script that will look at the dates and highlight the modules that cover todays date. When the first start and end day are entered, it will repeat that pattern for all of the other modules which can then be adjusted if needed.
+
+ASSIGNMENT PAGE TOOLS
+All of the wiki-page tools are now available on an assignment page.
+
+ACCORDION/TABS UPDATE
+Accordions and tabs now insert at the cursor position rather than creating their own section so that they are easier to incorporate into your content. Also changed the code for accordions and tabs so that they are h4 elements and a div of content. This is for accessibility and so the flow still works when viewed on the mobile app (since the javascript to create the widgets doesn't work in the app)

@@ -1,0 +1,43 @@
+/* Quick Check Styling */
+.quickCheck .correct, .quickCheck .incorrect, .quickCheck .response, .correctAnswer .response{
+	background: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	padding: 15px;
+	display: block;
+}
+.quickCheck .response {
+	border: 2px solid #f2f2f2;
+	color: #468847;
+}
+.quickCheck .correct {
+	border: 2px solid #468847 !important;
+	color: #468847 !important;
+}
+.quickCheck .incorrect {
+	border: 2px solid #b94a48;
+	color: #b94a48;
+}
+.quickCheck {
+	background: #dfe9f0;
+	overflow: hidden;
+	margin-bottom: 0px;
+}
+.quickCheck h4{
+	margin-top: 0px;
+}
+.quickCheck .next {
+	width: 250px;
+	float: right;
+	margin-top: 15px;
+}
+#answers {
+	list-style: none;
+}
+
+.quickCheck .quickField {
+	margin: -3px 2px 0;
+}
