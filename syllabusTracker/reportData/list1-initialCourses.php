@@ -6,8 +6,6 @@
 
 	include 'syllabusAPI.php';
 
-	exit(0);
-
 	?>
 <!DOCTYPE html>
 <head>
