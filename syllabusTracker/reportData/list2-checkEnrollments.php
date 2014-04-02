@@ -32,7 +32,7 @@
 		<div class="row-fluid">
 			<div id="collegeList">
 				<!-- <ol id="courseList"> -->
-					<?php 
+					<?php
 						$indexNum = $_GET['indexNum'];
 						$jsonData = "[";
 						echo '<ol>';
@@ -42,11 +42,11 @@
 						$courseCount = count($data);
 							$college = $data[$indexNum]['collegeName'];
 							$jsonData .= "{";
-							$jsonData .= '"collegeName": "'.$college.'",';
+							$jsonData .= '"collegeName": '.json_encode($college).',';
 							$jsonData .= '"departments": [';
 							$departmentCount = count($data[$indexNum]['departments']);
 							for ($j=0; $j<$departmentCount; $j++){
-								$jsonData .= '{"deptName": "'.$data[$indexNum]['departments'][$j]['deptName'].'",';
+								$jsonData .= '{"deptName": '.json_encode($data[$indexNum]['departments'][$j]['deptName']).',';
 								$courseCount = count($data[$indexNum]['departments'][$j]['courses']);
 								$jsonData .= '"courses": [';
 								for ($k=0; $k<$courseCount; $k++){
@@ -54,8 +54,8 @@
 									$studentEnrollments = hasStudents($courseID, $tokenHeader);
 								  	if($studentEnrollments == true){
 										$jsonData .= "{";
-										$jsonData .= '"courseID": "'.$courseID.'",'; 
-										$jsonData .= '"courseName": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['courseName'].'",'; 
+										$jsonData .= '"courseID": "'.$courseID.'",';
+										$jsonData .= '"courseName": '.json_encode($data[$indexNum]['departments'][$j]['courses'][$k]['courseName']).',';
 										$jsonData .= '"usingCanvas": "'.$data[$indexNum]['departments'][$j]['courses'][$k]['usingCanvas'].'"';
 										$jsonData .= "},";
 									} else {
@@ -73,13 +73,13 @@
 						// echo $jsonData;
 						// var_dump($data);
 
-						// create json file pointer 
-						$fp = @fopen('json/'.$_GET['term'].'_enrollments_'.$indexNum.'.json', 'w') or die('Could not open file, or file does not exist and failed to create.'); 
-					
-						// write text to file 
-						@fwrite($fp, $jsonData) or die('Could not write to file.'); 
+						// create json file pointer
+						$fp = @fopen('json/'.$_GET['term'].'_enrollments_'.$indexNum.'.json', 'w') or die('Could not open file, or file does not exist and failed to create.');
 
-						// close file 
+						// write text to file
+						@fwrite($fp, $jsonData) or die('Could not write to file.');
+
+						// close file
 						@fclose($fp);
 					?>
 			</div>
