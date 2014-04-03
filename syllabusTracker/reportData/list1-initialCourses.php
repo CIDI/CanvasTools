@@ -31,7 +31,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="collegeList">
-					<?php 
+					<?php
 						$jsonData = "";
 						// Grab the list of Colleges and Departments we will be checking
 						$currentList = file_get_contents('json/collegeList.json');
@@ -44,11 +44,11 @@
 								<a href="#top" class="topLink"><i class="icon-circle-arrow-up"></i> Top</a>
 								</h2>';
 							echo '<div class="collegeGroup well">';
-							$jsonData .= '{ "collegeName": "'.$collegeData['collegeName'].'", "departments": [';
+							$jsonData .= '{ "collegeName": '.json_encode($collegeData['collegeName']).', "departments": [';
 							foreach($collegeData['departments'] as $department)
 							{
 								echo '<div class="department well">';
-						    	$jsonData .= '{ "deptName": "'.$department['deptName'].'", "courses" : [';
+						    	$jsonData .= '{ "deptName": '.json_encode($department['deptName']).', "courses" : [';
 						    	echo '<h3>'.$department["deptName"].' ('.$department["deptID"].')</h3>';
 						    	getCourses($department['deptID'], $tokenHeader);
 						    	echo '</div>';
@@ -58,7 +58,7 @@
 							$jsonData = rtrim($jsonData, ",");
 							$jsonData .= ']},';
 							echo '</div>';
-					    }        
+					    }
 
 						function getCourses($accountID, $tokenHeader){
 							echo '<ol class="courseList">';
@@ -93,10 +93,10 @@
 										} else {
 											$usingCanvas = "false";
 										}
-										$GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": "'.$courseName.'", "usingCanvas": "'.$usingCanvas.'"},';
+										$GLOBALS['jsonData'] .=' {"courseID": "'.$courseID.'", "courseName": '.json_encode($courseName).', "usingCanvas": "'.$usingCanvas.'"},';
 									}
 								}
-									// This is the second part of page control. It will exit the loop when all courses have been returned 
+									// This is the second part of page control. It will exit the loop when all courses have been returned
 									if ($courseCount < $perPage){
 										// echo '</ol>';
 										break;
@@ -108,16 +108,16 @@
 
 						// Write the results to a JSON file for later retrieval
 
-						// create json file pointer 
-						$fp = @fopen('json/'.$_GET['term'].'.json', 'w') or die('Could not open file, or file does not exist and failed to create.'); 
-					
+						// create json file pointer
+						$fp = @fopen('json/'.$_GET['term'].'.json', 'w') or die('Could not open file, or file does not exist and failed to create.');
+
 						$cleanedText = str_replace("\t", "", $jsonData);
-						$mytext = '['.rtrim($cleanedText, ", \n").']'; 
+						$mytext = '['.rtrim($cleanedText, ", \n").']';
 
-						// write text to file 
-						@fwrite($fp, $mytext) or die('Could not write to file.'); 
+						// write text to file
+						@fwrite($fp, $mytext) or die('Could not write to file.');
 
-						// close file 
+						// close file
 						@fclose($fp);
 					?>
 			</div>
