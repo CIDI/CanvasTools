@@ -1,6 +1,7 @@
 Welcome to the Syllabus Tracker, created by the Center for Innovative Design & Instruction at Utah State University
 
-The Syllabus Tracker needs to be loaded on a webserver that can handle PHP and has a folder that can be written to
+The Syllabus Tracker needs to be loaded on a webserver that can handle PHP and has 
+A FOLDER with WRITE access
 
 In order to deploy this for your institution, there are a few things you will want to change.
 
